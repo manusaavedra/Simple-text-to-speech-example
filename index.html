@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <title>Text to Speech</title>
+</head>
+<body>
+    
+    <h2>Simple text-to-speech example</h2>
+    <form id="form">
+        <div class="input-group">
+            <select id="lang">
+                <option value="en-US">Inglés</option>
+                <option value="es-ES">Español</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="text" id="text_in" value="how are you" />
+            <label for="">Your Text:</label>
+        </div>
+        <div class="input-group">
+            <button onclick="textToSpeech()">to Speech</button>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        
+        document.getElementById("form").addEventListener("submit", (e) => {
+            e.preventDefault()
+        })
+
+        function textToSpeech() {
+            
+            let utter = new SpeechSynthesisUtterance();
+            utter.lang = document.getElementById("lang").value;
+            utter.text = document.getElementById("text_in").value;
+            utter.volume = 0.5;
+
+            // event after text has been spoken
+            utter.onend = function() {
+                alert('The voice has finished playing!');
+            }
+
+            // speak
+            window.speechSynthesis.speak(utter);
+        }
+
+        document.getElementById('')
+    
+    </script>
+</body>
+</html>
